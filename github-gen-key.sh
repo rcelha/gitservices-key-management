@@ -11,10 +11,11 @@ _send_key(){
     local KEY_VALUE;
     
     KEY_VALUE=`cat ${ID_FILE_PUB}`;
+    TITLE=$(get_machine_title);
 
     CURL="curl -k -X POST -sL -w \nRETCODE:%{http_code} ";
     CURL="${CURL} --user ${USERNAME}:${PASSWORD}";
-    $CURL https://api.github.com/user/keys -d "{\"title\":\"vagrant\", \"key\": \"${KEY_VALUE}\"}";
+    $CURL https://api.github.com/user/keys -d "{\"title\":\"${TITLE}\", \"key\": \"${KEY_VALUE}\"}";
     return $?;
 
 

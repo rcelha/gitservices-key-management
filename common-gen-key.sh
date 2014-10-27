@@ -1,5 +1,9 @@
 #!/bin/sh
 
+get_machine_title(){
+    echo ${USER}_at_${HOSTNAME};
+}
+
 gen_key(){
     local ID_FILE=$1;
 

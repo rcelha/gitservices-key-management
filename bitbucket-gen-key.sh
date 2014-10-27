@@ -11,10 +11,12 @@ _send_key(){
     local KEY_VALUE;
     
     KEY_VALUE=`cat ${ID_FILE_PUB}`;
+    TITLE=$(get_machine_title);
+
     CURL="curl -k -X POST -sL -w \nRETCODE:%{http_code} ";
     CURL="${CURL} --user ${USERNAME}:${PASSWORD}";
      
-    $CURL https://api.bitbucket.org/1.0/users/${USERNAME}/ssh-keys/ -F "key=${KEY_VALUE}" -F "label=vagrant";
+    $CURL https://api.bitbucket.org/1.0/users/${USERNAME}/ssh-keys/ -F "key=${KEY_VALUE}" -F "label=${TITLE}";
     return $?;
 }
 
